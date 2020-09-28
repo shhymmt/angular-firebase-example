@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+
+  pet: Pet = {
+    name: 'テストペット',
+    exp: 200,
+    level: 4,
+    avatarURL: '/assets/images/pet-1.png'
+  };
+
   constructor() { }
 
   ngOnInit(): void {
