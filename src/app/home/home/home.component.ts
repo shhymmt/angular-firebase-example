@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Pet } from 'src/app/interfaces/pet';
 
 @Component({
   selector: 'app-home',
