@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MaxLengthValidator } from '@angular/forms';
 import { Pet } from 'src/app/interfaces/pet';
 
 @Component({
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
     name: 'テストペット',
     exp: 200,
     level: 4,
+    gender: 'male',
     trainerId: '1',
   };
 
