@@ -33,7 +33,7 @@ export class GuestGuard implements CanActivate, CanLoad {
       take(1),
       tap(isLoggedIn => {
         if (!isLoggedIn) {
-          this.router.navigateByUrl('/welcome');
+          this.router.navigateByUrl('/');
         }
       })
     );
