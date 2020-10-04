@@ -6,17 +6,7 @@ admin.initializeApp();
 
 const db = admin.firestore();
 
-const expTable = [
-  20,
-  40,
-  100,
-  250,
-  500,
-  1000,
-  2000,
-  4000,
-  10000
-];
+const expTable = [20, 40, 100, 250, 500, 1000, 2000, 4000, 10000];
 
 const EARN_EXPERIENCE = 10;
 
@@ -25,14 +15,15 @@ admin.firestore.FieldValue.increment(10);
 export const gitHook = functions
   .region('asia-northeast1')
   .https.onRequest(async (request, response) => {
-    const pets = await db.collection('pets')
-    .where('ownerGitHubId', '==', request.body.sender.id)
-    .get();
+    const pets = await db
+      .collection('pets')
+      .where('ownerGitHubId', '==', request.body.sender.id)
+      .get();
 
     const pet = pets.docs[0].data();
 
     let level = 1;
-    expTable.some(nextExp => {
+    expTable.some((nextExp) => {
       if (pet.exp + EARN_EXPERIENCE >= nextExp) {
         level++;
         return false;
@@ -43,9 +34,11 @@ export const gitHook = functions
 
     const increment = admin.firestore.FieldValue.increment(EARN_EXPERIENCE);
 
-    pets.docs.forEach(doc => doc.ref.update({
-      exp: increment,
-      level
-    }));
+    pets.docs.forEach((doc) =>
+      doc.ref.update({
+        exp: increment,
+        level,
+      })
+    );
     response.send('succes');
   });
